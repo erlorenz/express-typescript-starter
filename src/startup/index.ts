@@ -1,4 +1,4 @@
-import { Express, Request, Response } from 'express';
+import { Express, NextFunction, Request, Response } from 'express';
 import expressPino from 'express-pino-logger';
 import { logger } from './logger';
 import express from 'express';
@@ -14,7 +14,9 @@ export function initializeMiddleware(app: Express) {
 
   app.use('/api', routes);
 
-  app.use((err: Error, req: Request, res: Response) => {
-    res.status(500).json({ error: 'Internal server error' });
+  // Main error handler
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    res.status(res.statusCode < 400 ? 500 : res.statusCode);
+    res.json({ error: err.message || 'Internal server error' });
   });
 }
