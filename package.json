@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts | pino-colada"
+    "dev": "nodemon src/server.ts | pino-pretty"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "express-async-errors": "^3.1.1",
     "express-pino-logger": "^5.0.0",
     "pino": "^6.11.0",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "yup": "^0.32.8"
   }
 }

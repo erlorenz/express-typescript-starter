@@ -1,13 +1,16 @@
 import express from 'express';
+import * as authController from '../modules/auth/user/auth.controller';
+import { NotFoundError } from '../utils/errors';
+import { default as v1Router } from './v1';
 
-const router = express.Router();
+const indexRouter = express.Router();
 
-router.get('/v1', async (req, res) => {
-  throw new Error();
-  res.status(200).json({
-    version: 1,
-    message: 'looking good',
-  });
+// Health Check
+indexRouter.get('/', (req, res) => res.status(200).send('🚀 App is running'));
+
+// Catch-all
+indexRouter.use(() => {
+  throw new NotFoundError('This route does not exist');
 });
 
-export default router;
+export { v1Router, indexRouter };

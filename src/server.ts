@@ -2,21 +2,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import 'express-async-errors';
-import pino from 'pino';
-import expressPino from 'express-pino-logger';
 import config from './config';
-import { initializeMiddleware } from './startup';
 import { logger } from './startup/logger';
-import { initializeDb } from './startup/db';
+import { initializeMiddleware } from './startup';
+import { initializePubsub } from './startup/pubsub';
 
 const app = express();
 
-// Startup and other middleware
+// Startup loaders
 initializeMiddleware(app);
-initializeDb();
-
-// Health Check
-app.get('/', (req, res) => res.status(200).send('🚀 App is running'));
+// initializePubsub();
+// initializeDb();
 
 // Start server
 app.listen(config.port, () =>

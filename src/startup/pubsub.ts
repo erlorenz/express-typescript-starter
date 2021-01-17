@@ -7,7 +7,7 @@ const publisher = createClient();
 export const redis = { subscriber, publisher };
 
 // Database
-export function initializeDb() {
+export function initializePubsub() {
   publisher.on('error', (err) => logger.error(err));
   subscriber.on('error', (err) => logger.error(err));
   publisher.on('ready', () => logger.info('Redis publisher ready.'));
