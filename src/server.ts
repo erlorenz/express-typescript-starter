@@ -1,14 +1,26 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
-import logger from 'pino';
+import 'express-async-errors';
+import pino from 'pino';
+import expressPino from 'express-pino-logger';
+import config from './config';
+import { initializeMiddleware } from './startup';
+import { logger } from './startup/logger';
+import { initializeDb } from './startup/db';
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+// Startup and other middleware
+initializeMiddleware(app);
+initializeDb();
 
-app.get('/', (req, res) => {
-  res.json({
-    hello: 'yo',
-  });
-});
+// Health Check
+app.get('/', (req, res) => res.status(200).send('🚀 App is running'));
 
-app.listen(port, () => console.log('Server running on port ' + port));
+// Start server
+app.listen(config.port, () =>
+  logger.info(
+    'Server running on port ' + config.port + ' in ' + config.env + ' mode.'
+  )
+);
