@@ -1,13 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-// import 'express-async-errors';
 import config from './config';
 import { logger } from './startup/logger';
 import { initializeMiddleware } from './startup';
-import { initializePubsub } from './startup/pubsub';
+// import { initializePubsub } from './startup/pubsub';
 import { initializeDb } from './startup/db';
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 const app = express();
 
