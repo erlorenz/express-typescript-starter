@@ -1,9 +1,8 @@
-import express from 'express';
-import * as authController from '../modules/auth/user/auth.controller';
-import { NotFoundError } from '../utils/errors';
+import epr from 'express-promise-router';
+import * as authController from '../modules/auth/auth.controller';
 
 // These routes are set to use v1 to allow for future change
-const router = express.Router();
+const router = epr();
 
 router.post('/user', authController.userSignup);
 

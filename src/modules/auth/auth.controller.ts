@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { BadRequestError } from '../../../utils/errors';
-import validateSchema from '../../../utils/validateSchema';
+import { BadRequestError } from '../../utils/errors';
+import validateSchema from '../../utils/validateSchema';
 import { userSignupSchema } from './auth.dto';
 import * as userService from './auth.service';
 
@@ -12,5 +12,5 @@ export async function userSignup(req: Request, res: Response) {
 
   // const sendEmail = await emailService.sendSignupEmail etc
 
-  res.status(200).json({ data: newUser });
+  res.status(201).json({ data: newUser });
 }

@@ -6,6 +6,7 @@ import cors from 'cors';
 import { indexRouter, v1Router } from '../routes';
 import errorHandler from './error';
 import { NotFoundError } from '../utils/errors';
+import { initializeDb } from './db';
 
 export function initializeMiddleware(app: Express) {
   app.use(expressPino({ logger }));
