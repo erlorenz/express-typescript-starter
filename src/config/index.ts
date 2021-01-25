@@ -9,6 +9,7 @@ export default config;
 
 // Error if missing any env variables
 function parseEnv(envVar: string) {
-  if (!process.env[envVar]) throw new Error('Missing environment variable');
+  if (!process.env[envVar])
+    throw new Error('Missing environment variable ' + envVar);
   return process.env[envVar] as string;
 }

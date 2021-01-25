@@ -11,7 +11,6 @@ const app = express();
 
 // Startup loaders
 initializeMiddleware(app);
-// initializePubsub();
 initializeDb();
 
 // Start server
